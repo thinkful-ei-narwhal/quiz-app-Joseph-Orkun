@@ -141,7 +141,7 @@ function rightPage() {
     <h2>You got it right!</h2>
     <p>You have ${store.score} answers right out of 6 right.</p>
     <p>Question ${store.questionNumber} out of 6</p>
-    <button>
+    <button class="next">
       <span>Next</span>
     </button>
   </section>`
@@ -154,7 +154,7 @@ function wrongPage(question) {
     <p>The right answer is "${question[store.questionNumber - 1].correctAnswer}"</p>
     <p>You have ${store.score} answers right out of 6</p>
     <p>Question ${store.questionNumber} out of 6</p>
-    <button>
+    <button class="next">
       <span>Next</span>
     </button>
   </section>`
@@ -225,10 +225,17 @@ function handleNextQuestion() {
   });
 }
 
+function handleNextPage() {
+  // when we click next, we want to render the page for next question. 
+  $('main').on('click', '.next', function(event) {
+    $('main').html(renderQuestion(questions))
+  } )
+} 
 
 function main() {
   handleStart();
   handleNextQuestion();
+  handleNextPage();
 }
 
 $(main);
