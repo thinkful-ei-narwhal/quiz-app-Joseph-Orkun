@@ -80,8 +80,8 @@ const questions = [
 
 const store = {
   quizStarted: false,
-  questionNumber: 1,
-  score: 0
+  questionNumber: 0,
+  score: 0,
 };
 
 /**
@@ -113,20 +113,21 @@ function welcomePage() {
 }
 
 function questionPage(question) {
+  let value = question[store.questionNumber].answers
   return `
   <section class="container">
-    <p>Question ${store.questionNumber}</p>
-    <img src="${question[0].img}" alt="${question[0].alt}">
+    <p>Question ${store.questionNumber + 1}</p>
+    <img src="${question[store.questionNumber].img}" alt="${question[store.questionNumber].alt}">
     <form class="answer-question" action="#">
         <p>What is the capital of ${question.alt}?</p>
-        <input type="radio" id="q1" name="city" value="0">
-        <label for="q1">${question[0].answers[0]}</label><br>
-        <input type="radio" id="q2" name="city" value="1">
-        <label for="q2">${question[0].answers[1]}</label><br>
-        <input type="radio" id="q3" name="city" value="2">
-        <label for="q3">${question[0].answers[2]}</label>
-        <input type="radio" id="q4" name="city" value="3">
-        <label for="q4">${question[0].answers[3]}</label>
+        <input type="radio" id="q1" name="city" value="${value[0]}">
+        <label for="q1">${question[store.questionNumber].answers[0]}</label><br>
+        <input type="radio" id="q2" name="city" value="${value[1]}">
+        <label for="q2">${question[store.questionNumber].answers[1]}</label><br>
+        <input type="radio" id="q3" name="city" value="${value[2]}">
+        <label for="q3">${question[store.questionNumber].answers[2]}</label>
+        <input type="radio" id="q4" name="city" value="${value[3]}">
+        <label for="q4">${question[store.questionNumber].answers[3]}</label>
         <button class="submit-question">
           <span>Submit</span>
         </button>
@@ -150,7 +151,7 @@ function wrongPage(question) {
   return `
   <section class="container">
     <h2>Oops! You got that wrong</h2>
-    <p>The right answer is "${question.correctAnswer}"</p>
+    <p>The right answer is "${question[store.questionNumber - 1].correctAnswer}"</p>
     <p>You have ${store.score} answers right out of 6</p>
     <p>Question ${store.questionNumber} out of 6</p>
     <button>
@@ -198,25 +199,36 @@ function renderFinish() {
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-function start() {
+function handleStart() {
   $('.welcome-screen').on('click', '.play-now', function () {
     store.quizStarted = true;
     $('main').html(renderQuestion(questions));
   });
 }
 
-function nextQuestion() {
+function handleNextQuestion() {
   // when user submits answer
     // if answer is right, call (renderRight()), +1 score & +1 question count .html()
     // if answer wrong, call(renderWrong()), +1 question count .html()
-  $('.answer-question').submit(function (event) {
-    console.log('hello');
+  $('main').on('submit', '.answer-question', function (event) {
+    event.preventDefault();
+    let answer = $("input[name='city']:checked").val()
+    let correct = questions[store.questionNumber].correctAnswer;
+    if (answer == correct) {
+      store.score += 1;
+      store.questionNumber += 1;
+      $('main').html(renderRight())
+    } else {
+      store.questionNumber += 1;
+      $('main').html(renderWrong(questions));
+    }
   });
 }
 
 
 function main() {
-  start();
+  handleStart();
+  handleNextQuestion();
 }
 
 $(main);
