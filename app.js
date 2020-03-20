@@ -117,17 +117,17 @@ function questionPage(question) {
   <section class="container">
     <p>Question ${store.questionNumber}</p>
     <img src="${question[0].img}" alt="${question[0].alt}">
-    <form action="#">
+    <form class="answer-question" action="#">
         <p>What is the capital of ${question.alt}?</p>
-        <input type="radio" id="male" name="gender" value="male">
-        <label for="male">${question[0].answers[0]}</label><br>
-        <input type="radio" id="female" name="gender" value="female">
-        <label for="female">${question[0].answers[1]}</label><br>
-        <input type="radio" id="other" name="gender" value="other">
-        <label for="other">${question[0].answers[2]}</label>
-        <input type="radio" id="other" name="gender" value="other">
-        <label for="other">${question[0].answers[3]}</label>
-        <button>
+        <input type="radio" id="q1" name="city" value="0">
+        <label for="q1">${question[0].answers[0]}</label><br>
+        <input type="radio" id="q2" name="city" value="1">
+        <label for="q2">${question[0].answers[1]}</label><br>
+        <input type="radio" id="q3" name="city" value="2">
+        <label for="q3">${question[0].answers[2]}</label>
+        <input type="radio" id="q4" name="city" value="3">
+        <label for="q4">${question[0].answers[3]}</label>
+        <button class="submit-question">
           <span>Submit</span>
         </button>
     </form>
@@ -198,17 +198,25 @@ function renderFinish() {
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-function test() {
-  $('body').on('click', 'h1', function () {
-    $('main').html(renderFinish());
+function start() {
+  $('.welcome-screen').on('click', '.play-now', function () {
+    store.quizStarted = true;
+    $('main').html(renderQuestion(questions));
   });
+}
 
-
+function nextQuestion() {
+  // when user submits answer
+    // if answer is right, call (renderRight()), +1 score & +1 question count .html()
+    // if answer wrong, call(renderWrong()), +1 question count .html()
+  $('.answer-question').submit(function (event) {
+    console.log('hello');
+  });
 }
 
 
 function main() {
-  test();
+  start();
 }
 
 $(main);
