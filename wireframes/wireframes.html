@@ -30,13 +30,37 @@
         <label for="other">Other</label>
         <input type="radio" id="other" name="gender" value="other">
         <label for="other">Other</label>
+        <button>
+          <span>Submit</span>
+        </button>
     </form>
   </section>
-  <!-- Wrong Answer Page -->
-
+  <!-- Wrong Answer Page (add right answer) -->
+  <section class="container">
+    <h2>Wrong Answer</h2>
+    <p>${right answer}</p>
+    <p>You have ${right} answers right out ${total}</p>
+    <p>Question ${num} out of 6</p>
+    <button>
+      <span>Next</span>
+    </button>
+  </section>
   <!-- Right Answer Page -->
-
+  <section class="container">
+    <h2>Right Answer</h2>
+    <p>You have ${right} answers right out ${total}</p>
+    <p>Question ${num} out of 6</p>
+    <button>
+      <span>Next</span>
+    </button>
+  </section>
   <!-- Finish Page -->
-
+  <section class="container">
+    <h2>You finished!</h2>
+    <p>You got ${right} answers right out ${total}</p>
+    <button>
+      <span>Restart Quiz</span>
+    </button>
+  </section>
 </body>
 </html>
