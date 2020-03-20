@@ -173,7 +173,7 @@ function finishPage(question) {
 /********** RENDER FUNCTION(S) **********/
 
 function renderWelcome() {
-  console.log("working");
+  return welcomePage();
 }
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
@@ -182,8 +182,8 @@ function renderWelcome() {
 
 // These functions handle events (submit, click, etc)
 function test() {
-  $('body').on('click', 'html', function () {
-    renderWelcome();
+  $('body').on('click', 'h1', function () {
+    $('main').html(renderWelcome());
   });
 }
 
@@ -192,4 +192,4 @@ function main() {
   test();
 }
 
-$('main');
+$(main);
