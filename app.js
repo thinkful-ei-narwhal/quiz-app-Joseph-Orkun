@@ -11,7 +11,8 @@ const questions = [
       'Adana'
     ],
     correctAnswer: 'Ankara',
-    image: 'https://1.bp.blogspot.com/-jO4jN2yqMjg/XiRnKw9wR5I/AAAAAAAABAk/20dBiObtVhUIBD7xsSF71NJRpn_9YLXRQCLcBGAsYHQ/s1600/Turkey-Facts-Interesting-Facts-About-Turkey-Country-hot-air-ballons-turkey.png'
+    image: 'https://1.bp.blogspot.com/-jO4jN2yqMjg/XiRnKw9wR5I/AAAAAAAABAk/20dBiObtVhUIBD7xsSF71NJRpn_9YLXRQCLcBGAsYHQ/s1600/Turkey-Facts-Interesting-Facts-About-Turkey-Country-hot-air-ballons-turkey.png',
+    alt: 'Turkey'
   },
   {
     question: 'What is the capital of the Dominican Republic?',
@@ -22,7 +23,8 @@ const questions = [
       'Constanza'
     ],
     correctAnswer: 'Santo Domingo',
-    image: 'https://www.godominicanrepublic.com/wp-content/uploads/2015/12/dsc01769.jpg'
+    image: 'https://www.godominicanrepublic.com/wp-content/uploads/2015/12/dsc01769.jpg',
+    alt: 'the Dominican Republic'
   },
   {
     question: 'What is the capital of Poland?',
@@ -33,7 +35,8 @@ const questions = [
       'Gdańsk'
     ],
     correctAnswer: 'Warsaw',
-    image: 'https://jobs.rbs.com/system/production/assets/176264/original/poland_lg.jpg'
+    image: 'https://jobs.rbs.com/system/production/assets/176264/original/poland_lg.jpg',
+    alt: 'Poland'
   },
   {
     question: 'What is the capital of India?',
@@ -44,7 +47,8 @@ const questions = [
       'Hyderabad'
     ],
     correctAnswer: 'New Delhi',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Taj_Mahal_%28Edited%29.jpeg/1200px-Taj_Mahal_%28Edited%29.jpeg'
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Taj_Mahal_%28Edited%29.jpeg/1200px-Taj_Mahal_%28Edited%29.jpeg',
+    alt: 'India'
   },
   {
     question: 'What is the capital of Brazil?',
@@ -55,7 +59,8 @@ const questions = [
       'Fortaleza'
     ],
     correctAnswer: 'Brasilia',
-    image: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2011/05/brazil-1200x720.jpg'
+    image: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2011/05/brazil-1200x720.jpg',
+    alt: 'Brazil'
   },
   {
     question: 'What is the capital of Canada?',
@@ -66,14 +71,15 @@ const questions = [
       'Quebec City'
     ],
     correctAnswer: '',
-    image: 'https://www.worldtravelguide.net/wp-content/uploads/2017/03/shu-Canada-Toronto_1388944829-1440x823.jpg'
+    image: 'https://www.worldtravelguide.net/wp-content/uploads/2017/03/shu-Canada-Toronto_1388944829-1440x823.jpg',
+    alt: 'Canada'
   }
 ]
 
 
 const store = {
   quizStarted: false,
-  questionNumber: 0,
+  questionNumber: 1,
   score: 0
 };
 
@@ -94,7 +100,7 @@ const store = {
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
-function welcomePage(quesion) {
+function welcomePage() {
   return `
   <section class="container">
     <h1>Welcome to World Capital Game!</h1>
@@ -108,19 +114,18 @@ function welcomePage(quesion) {
 function questionPage(question) {
   return `
   <section class="container">
-    <p>Question 1</p>
-    <img src="https://1.bp.blogspot.com/-jO4jN2yqMjg/XiRnKw9wR5I/AAAAAAAABAk/20dBiObtVhUIBD7xsSF71NJRpn_9YLXRQCLcBGAsYHQ/s1600/Turkey-Facts-Interesting-Facts-About-Turkey-Country-hot-air-ballons-turkey.png
-    " alt="Turkey">
+    <p>Question ${store.questionNumber}</p>
+    <img src="${question.image}" alt="${question.alt}">
     <form action="#">
-        <p>What is the capital of Turkey?</p>
+        <p>What is the capital of ${question.alt}?</p>
         <input type="radio" id="male" name="gender" value="male">
-        <label for="male">Male</label><br>
+        <label for="male">${question.answers[0]}</label><br>
         <input type="radio" id="female" name="gender" value="female">
-        <label for="female">Female</label><br>
+        <label for="female">${question.answers[1]}</label><br>
         <input type="radio" id="other" name="gender" value="other">
-        <label for="other">Other</label>
+        <label for="other">${question.answers[2]}</label>
         <input type="radio" id="other" name="gender" value="other">
-        <label for="other">Other</label>
+        <label for="other">${question.answers[3]}</label>
         <button>
           <span>Submit</span>
         </button>
@@ -128,12 +133,12 @@ function questionPage(question) {
   </section>`
 }
 
-function rightPage(question) {
+function rightPage() {
   return `
   <section class="container">
-    <h2>Right Answer</h2>
-    <p>You have ${right} answers right out ${total}</p>
-    <p>Question ${num} out of 6</p>
+    <h2>You got it right!</h2>
+    <p>You have ${store.score} answers right out of 6 right.</p>
+    <p>Question ${store.questionNumber} out of 6</p>
     <button>
       <span>Next</span>
     </button>
@@ -143,10 +148,10 @@ function rightPage(question) {
 function wrongPage(question) {
   return `
   <section class="container">
-    <h2>Wrong Answer</h2>
-    <p>${}</p>
-    <p>You have ${} answers right out ${}</p>
-    <p>Question ${} out of 6</p>
+    <h2>Oops! You got that wrong</h2>
+    <p>The right answer is "${question.correctAnswer}"</p>
+    <p>You have ${store.score} answers right out 6</p>
+    <p>Question ${store.questionNumber} out of 6</p>
     <button>
       <span>Next</span>
     </button>
@@ -157,7 +162,7 @@ function finishPage(question) {
   return `
   <section class="container">
     <h2>You finished!</h2>
-    <p>You got ${right} answers right out ${total}</p>
+    <p>You got ${store.score} answers right out 6</p>
     <button>
       <span>Restart Quiz</span>
     </button>
