@@ -173,7 +173,7 @@ function finishPage(question) {
 
 function renderWelcome() {
   let storePage = welcomePage();
-  $('main').html(storePage)
+  $('main').html()
 }
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
