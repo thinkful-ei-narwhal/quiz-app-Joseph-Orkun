@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Example store structure
  */
@@ -11,7 +12,7 @@ const questions = [
       'Adana'
     ],
     correctAnswer: 'Ankara',
-    image: 'https://1.bp.blogspot.com/-jO4jN2yqMjg/XiRnKw9wR5I/AAAAAAAABAk/20dBiObtVhUIBD7xsSF71NJRpn_9YLXRQCLcBGAsYHQ/s1600/Turkey-Facts-Interesting-Facts-About-Turkey-Country-hot-air-ballons-turkey.png',
+    img: 'https://1.bp.blogspot.com/-jO4jN2yqMjg/XiRnKw9wR5I/AAAAAAAABAk/20dBiObtVhUIBD7xsSF71NJRpn_9YLXRQCLcBGAsYHQ/s1600/Turkey-Facts-Interesting-Facts-About-Turkey-Country-hot-air-ballons-turkey.png',
     alt: 'Turkey'
   },
   {
@@ -23,7 +24,7 @@ const questions = [
       'Constanza'
     ],
     correctAnswer: 'Santo Domingo',
-    image: 'https://www.godominicanrepublic.com/wp-content/uploads/2015/12/dsc01769.jpg',
+    img: 'https://www.godominicanrepublic.com/wp-content/uploads/2015/12/dsc01769.jpg',
     alt: 'the Dominican Republic'
   },
   {
@@ -35,7 +36,7 @@ const questions = [
       'Gdańsk'
     ],
     correctAnswer: 'Warsaw',
-    image: 'https://jobs.rbs.com/system/production/assets/176264/original/poland_lg.jpg',
+    img: 'https://jobs.rbs.com/system/production/assets/176264/original/poland_lg.jpg',
     alt: 'Poland'
   },
   {
@@ -47,7 +48,7 @@ const questions = [
       'Hyderabad'
     ],
     correctAnswer: 'New Delhi',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Taj_Mahal_%28Edited%29.jpeg/1200px-Taj_Mahal_%28Edited%29.jpeg',
+    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Taj_Mahal_%28Edited%29.jpeg/1200px-Taj_Mahal_%28Edited%29.jpeg',
     alt: 'India'
   },
   {
@@ -59,7 +60,7 @@ const questions = [
       'Fortaleza'
     ],
     correctAnswer: 'Brasilia',
-    image: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2011/05/brazil-1200x720.jpg',
+    img: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2011/05/brazil-1200x720.jpg',
     alt: 'Brazil'
   },
   {
@@ -70,8 +71,8 @@ const questions = [
       'Ottawa',
       'Quebec City'
     ],
-    correctAnswer: '',
-    image: 'https://www.worldtravelguide.net/wp-content/uploads/2017/03/shu-Canada-Toronto_1388944829-1440x823.jpg',
+    correctAnswer: 'Ottawa',
+    img: 'https://www.worldtravelguide.net/wp-content/uploads/2017/03/shu-Canada-Toronto_1388944829-1440x823.jpg',
     alt: 'Canada'
   }
 ]
@@ -115,17 +116,17 @@ function questionPage(question) {
   return `
   <section class="container">
     <p>Question ${store.questionNumber}</p>
-    <img src="${question.image}" alt="${question.alt}">
+    <img src="${question[0].img}" alt="${question[0].alt}">
     <form action="#">
         <p>What is the capital of ${question.alt}?</p>
         <input type="radio" id="male" name="gender" value="male">
-        <label for="male">${question.answers[0]}</label><br>
+        <label for="male">${question[0].answers[0]}</label><br>
         <input type="radio" id="female" name="gender" value="female">
-        <label for="female">${question.answers[1]}</label><br>
+        <label for="female">${question[0].answers[1]}</label><br>
         <input type="radio" id="other" name="gender" value="other">
-        <label for="other">${question.answers[2]}</label>
+        <label for="other">${question[0].answers[2]}</label>
         <input type="radio" id="other" name="gender" value="other">
-        <label for="other">${question.answers[3]}</label>
+        <label for="other">${question[0].answers[3]}</label>
         <button>
           <span>Submit</span>
         </button>
@@ -150,7 +151,7 @@ function wrongPage(question) {
   <section class="container">
     <h2>Oops! You got that wrong</h2>
     <p>The right answer is "${question.correctAnswer}"</p>
-    <p>You have ${store.score} answers right out 6</p>
+    <p>You have ${store.score} answers right out of 6</p>
     <p>Question ${store.questionNumber} out of 6</p>
     <button>
       <span>Next</span>
@@ -158,7 +159,7 @@ function wrongPage(question) {
   </section>`
 }
 
-function finishPage(question) {
+function finishPage() {
   return `
   <section class="container">
     <h2>You finished!</h2>
@@ -172,9 +173,25 @@ function finishPage(question) {
 /********** RENDER FUNCTION(S) **********/
 
 function renderWelcome() {
-  let storePage = welcomePage();
-  $('main').html()
+  return welcomePage();
 }
+
+function renderQuestion(data) {
+  return questionPage(data);
+}
+
+function renderRight() {
+  return rightPage();
+}
+
+function renderWrong(data) {
+  return wrongPage(data);
+}
+
+function renderFinish() {
+  return finishPage();
+}
+
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 
@@ -182,14 +199,16 @@ function renderWelcome() {
 
 // These functions handle events (submit, click, etc)
 function test() {
-  $('body').click(function () {
-    renderWelcome()
-  })
+  $('body').on('click', 'h1', function () {
+    $('main').html(renderFinish());
+  });
+
+
 }
 
 
 function main() {
-  test()
+  test();
 }
 
-$('main');
+$(main);
