@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Example store structure
  */
@@ -172,8 +173,7 @@ function finishPage(question) {
 /********** RENDER FUNCTION(S) **********/
 
 function renderWelcome() {
-  let storePage = welcomePage();
-  $('main').html(storePage)
+  console.log("working");
 }
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
@@ -182,14 +182,14 @@ function renderWelcome() {
 
 // These functions handle events (submit, click, etc)
 function test() {
-  $('body').click(function () {
-    renderWelcome()
-  })
+  $('body').on('click', 'html', function () {
+    renderWelcome();
+  });
 }
 
 
 function main() {
-  test()
+  test();
 }
 
 $('main');
