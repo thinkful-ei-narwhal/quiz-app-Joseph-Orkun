@@ -11,6 +11,11 @@
   box-sizing: border-box;
 }
 
+body {
+  background: url('https://lh3.googleusercontent.com/proxy/XK8s2nAzs9bXIDUibBtQw6DKHMoYZNH1ugePuQGUDnHpb2lqY1dlnxofAoAneYa_J62RA0yWFngwLQCjW_W4plcS6rI1ZxWwHKsw0CPuf24');
+  background-size: cover;
+}
+
 .container {
   border: 3px solid lightgray;
   width: 350px;
@@ -18,12 +23,10 @@
   margin: 100px auto 0;
   padding: 50px 10px;
   text-align: center;
+  background-color: white;
 }
 
 img {
-  width: 70%;
+  width: 90%;
 }
 
-.welcome-page {
-  font-size: 10px;
-}
