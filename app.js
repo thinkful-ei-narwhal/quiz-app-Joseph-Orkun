@@ -171,8 +171,25 @@ function finishPage(question) {
 
 /********** RENDER FUNCTION(S) **********/
 
+function renderWelcome() {
+  let storePage = welcomePage();
+  $('main').html(storePage)
+}
+
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
+function test() {
+  $('body').click(function () {
+    renderWelcome()
+  })
+}
+
+
+function main() {
+  test()
+}
+
+$('main');
