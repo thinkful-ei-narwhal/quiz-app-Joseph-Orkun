@@ -32,13 +32,8 @@ img {
   width: 90%;
 }
 
-main .welcome-page h1 {
-  font-weight: bold;
-}
-
-
-main .welcome-page {
-  margin-top: 100px;
+.welcome-screen {
+  padding: 30px;
 }
 
 

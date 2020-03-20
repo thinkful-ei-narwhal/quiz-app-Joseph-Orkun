@@ -103,7 +103,7 @@ const store = {
 
 function welcomePage() {
   return `
-  <section class="container welcome-page">
+  <section class="container welcome-screen">
     <h1>Welcome to World Capital Game!</h1>
     <p>Go through the following questions to see if you're familiar with the world's capitals!</p>
     <button>
