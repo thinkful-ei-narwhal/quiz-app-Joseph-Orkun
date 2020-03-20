@@ -137,10 +137,13 @@ function questionPage(question) {
 
 function rightPage() {
   return `
-  <section class="container right page">
+  <section class="container right-page">
     <h2>You got it right!</h2>
-    <p>You have ${store.score} answers right out of 6.</p>
-    <p>Question ${store.questionNumber} out of 6</p>
+    <span style='font-size:70px;'>&#128512;</span>
+    <div class="paragraph">
+      <p>You have ${store.score} answers right out of 6.</p>
+      <p>Question ${store.questionNumber} out of 6</p>
+    </div>
     <button class="next">
       <span>Next</span>
     </button>
@@ -150,10 +153,13 @@ function rightPage() {
 function wrongPage(question) {
   return `
   <section class="container wrong-page">
-    <h2>Oops! You got that wrong</h2>
-    <p>The right answer is "${question[store.questionNumber - 1].correctAnswer}"</p>
-    <p>You have ${store.score} answers right out of 6</p>
-    <p>Question ${store.questionNumber} out of 6</p>
+    <h2>Oops! You got that wrong.</h2>
+    <span style='font-size:70px;'>&#128528;</span>
+    <div class="paragraph">
+      <p>The right answer is "${question[store.questionNumber - 1].correctAnswer}"</p>
+      <p>You have ${store.score} answers right out of 6</p>
+      <p>Question ${store.questionNumber} out of 6</p>
+    </div>
     <button class="next">
       <span>Next</span>
     </button>
@@ -162,9 +168,10 @@ function wrongPage(question) {
 
 function finishPage() {
   return `
-  <section class="container">
+  <section class="container finish-page">
     <h2>You finished!</h2>
-    <p>You got ${store.score} answers right out of 6</p>
+    <span style='font-size:70px;'>&#128079;</span>
+    <p>You got ${store.score} answers right out of 6.</p>
     <button class="reset">
       <span>Restart Quiz</span>
     </button>
