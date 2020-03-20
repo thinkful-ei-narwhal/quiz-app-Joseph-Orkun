@@ -228,8 +228,12 @@ function handleNextQuestion() {
 function handleNextPage() {
   // when we click next, we want to render the page for next question. 
   $('main').on('click', '.next', function(event) {
-    $('main').html(renderQuestion(questions))
-  } )
+    if (store.questionNumber < questions.length) {
+      $('main').html(renderQuestion(questions));
+    } else {
+      $('main').html(renderFinish())
+    }
+  });
 } 
 
 function main() {
