@@ -20,12 +20,14 @@ body {
 
 .container {
   border: 3px solid lightgray;
+  border-radius: 10px;
   width: 350px;
-  height: 500px;
+  height: 600px;
   margin: 100px auto 0;
   padding: 50px 10px;
   text-align: center;
   background-color: white;
+
 }
 
 img {
@@ -36,4 +38,36 @@ img {
   padding: 30px;
 }
 
+button {
+  padding: 20px;
+  border-radius: 5px;
+  border:none;
+  background-color: chocolate;
+  color: white;
+  font-weight: bold;
+}
 
+.welcome-screen p {
+  margin: 50px 0 50px;
+  font-size: larger;
+}
+
+form button {
+  display: block;
+  margin: 25px auto 0; 
+}
+
+form {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; */
+
+}
+
+.question-form p {
+  font-weight: bold;
+}
+
+label {
+  display:block;
+}

@@ -115,7 +115,7 @@ function welcomePage() {
 function questionPage(question) {
   let value = question[store.questionNumber].answers
   return `
-  <section class="container">
+  <section class="container question-form" >
     <p>Question ${store.questionNumber + 1}</p>
     <img src="${question[store.questionNumber].img}" alt="${question[store.questionNumber].alt}">
     <form class="answer-question" action="#">
