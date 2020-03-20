@@ -125,7 +125,7 @@ function questionPage(question) {
         <input type="radio" id="q2" name="city" value="${value[1]}">
         <label for="q2">${question[store.questionNumber].answers[1]}</label><br>
         <input type="radio" id="q3" name="city" value="${value[2]}">
-        <label for="q3">${question[store.questionNumber].answers[2]}</label>
+        <label for="q3">${question[store.questionNumber].answers[2]}</label><br>
         <input type="radio" id="q4" name="city" value="${value[3]}">
         <label for="q4">${question[store.questionNumber].answers[3]}</label>
         <button class="submit-question">
@@ -137,7 +137,7 @@ function questionPage(question) {
 
 function rightPage() {
   return `
-  <section class="container">
+  <section class="container right page">
     <h2>You got it right!</h2>
     <p>You have ${store.score} answers right out of 6.</p>
     <p>Question ${store.questionNumber} out of 6</p>
@@ -149,7 +149,7 @@ function rightPage() {
 
 function wrongPage(question) {
   return `
-  <section class="container">
+  <section class="container wrong-page">
     <h2>Oops! You got that wrong</h2>
     <p>The right answer is "${question[store.questionNumber - 1].correctAnswer}"</p>
     <p>You have ${store.score} answers right out of 6</p>

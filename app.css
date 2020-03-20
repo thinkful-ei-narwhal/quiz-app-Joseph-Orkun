@@ -22,7 +22,7 @@ body {
   border: 3px solid lightgray;
   border-radius: 10px;
   width: 350px;
-  height: 600px;
+  height: 550px;
   margin: 100px auto 0;
   padding: 50px 10px;
   text-align: center;
@@ -34,10 +34,6 @@ img {
   width: 90%;
 }
 
-.welcome-screen {
-  padding: 30px;
-}
-
 button {
   padding: 20px;
   border-radius: 5px;
@@ -47,27 +43,41 @@ button {
   font-weight: bold;
 }
 
+/* Welcome Screen */
+
+.welcome-screen {
+  padding: 30px;
+}
+
 .welcome-screen p {
   margin: 50px 0 50px;
   font-size: larger;
 }
+
+/* Question Page */
 
 form button {
   display: block;
   margin: 25px auto 0; 
 }
 
-form {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-evenly; */
-
+.answer-question {
+  height: 250px;
 }
 
 .question-form p {
   font-weight: bold;
 }
 
-label {
-  display:block;
+form input {
+  display: inline-block;
 }
+
+label {
+  margin: 10px 0 10px 0;
+}
+
+/* Right Page */
+
+
+/* Wrong Page */
