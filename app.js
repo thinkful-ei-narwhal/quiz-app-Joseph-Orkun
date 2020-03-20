@@ -103,7 +103,7 @@ const store = {
 
 function welcomePage() {
   return `
-  <section class="container">
+  <section class="container welcome-page">
     <h1>Welcome to World Capital Game!</h1>
     <p>Go through the following questions to see if you're familiar with the world's capitals!</p>
     <button>
@@ -119,7 +119,7 @@ function questionPage(question) {
     <p>Question ${store.questionNumber + 1}</p>
     <img src="${question[store.questionNumber].img}" alt="${question[store.questionNumber].alt}">
     <form class="answer-question" action="#">
-        <p>What is the capital of ${question.alt}?</p>
+        <p>What is the capital of ${question[store.questionNumber].alt}?</p>
         <input type="radio" id="q1" name="city" value="${value[0]}">
         <label for="q1">${question[store.questionNumber].answers[0]}</label><br>
         <input type="radio" id="q2" name="city" value="${value[1]}">
@@ -139,7 +139,7 @@ function rightPage() {
   return `
   <section class="container">
     <h2>You got it right!</h2>
-    <p>You have ${store.score} answers right out of 6 right.</p>
+    <p>You have ${store.score} answers right out of 6.</p>
     <p>Question ${store.questionNumber} out of 6</p>
     <button class="next">
       <span>Next</span>
@@ -164,7 +164,7 @@ function finishPage() {
   return `
   <section class="container">
     <h2>You finished!</h2>
-    <p>You got ${store.score} answers right out 6</p>
+    <p>You got ${store.score} answers right out of 6</p>
     <button class="reset">
       <span>Restart Quiz</span>
     </button>
@@ -239,7 +239,7 @@ function handleNextPage() {
 function handleRestart() {
   //when we click restart, load start page
   $('main').on('click', '.reset', event => {
-    $('main').html(renderWelcome())
+    location.reload()
   })
 };
 

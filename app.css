@@ -13,12 +13,17 @@
 
 .container {
   border: 3px solid lightgray;
-  width: 700px;
-  margin: 20px auto 0;
+  width: 350px;
+  height: 500px;
+  margin: 100px auto 0;
   padding: 50px 10px;
   text-align: center;
 }
 
 img {
   width: 70%;
+}
+
+.welcome-page {
+  font-size: 10px;
 }
