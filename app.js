@@ -165,7 +165,7 @@ function finishPage() {
   <section class="container">
     <h2>You finished!</h2>
     <p>You got ${store.score} answers right out 6</p>
-    <button>
+    <button class="reset">
       <span>Restart Quiz</span>
     </button>
   </section>`
@@ -236,10 +236,18 @@ function handleNextPage() {
   });
 } 
 
+function handleRestart() {
+  //when we click restart, load start page
+  $('main').on('click', '.reset', event => {
+    $('main').html(renderWelcome())
+  })
+};
+
 function main() {
   handleStart();
   handleNextQuestion();
   handleNextPage();
+  handleRestart();
 }
 
 $(main);
