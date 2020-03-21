@@ -170,7 +170,7 @@ function finishPage() {
   return `
   <section class="container finish-page">
     <h2>You finished!</h2>
-    <span style='font-size:70px;'>&#128079;</span>
+    <span style='font-size:100px;' class="clap-emoji">&#128079;</span>
       <p>You got <strong>${store.score}</strong> answers right out of <strong>${questions.length}</strong>.</p>
       <p>${store.score < (questions.length / 2) + 2 ? 'Try a little harder next time...' : 'Good job! You seem to know your stuff.'}<p>
     <button class="reset">
