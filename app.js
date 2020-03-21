@@ -101,16 +101,16 @@ const store = {
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
-function welcomePage() {
-  return `
-  <section class="container welcome-screen">
-    <h1>Welcome to World Capital Game!</h1>
-    <p>Go through the following questions to see if you're familiar with the world's capitals!</p>
-    <button>
-      <span>Play now!</span>
-    </button>
-  </section>`
-}
+// function welcomePage() {
+//   return `
+//   <section class="container welcome-screen">
+//     <h1>Welcome to World Capital Game!</h1>
+//     <p>Go through the following questions and test your knowledge to see how familiar you are with the world's capitals!</p>
+//     <button>
+//       <span>Play now!</span>
+//     </button>
+//   </section>`
+// }
 
 function questionPage(question) {
   let value = question[store.questionNumber].answers
@@ -141,8 +141,8 @@ function rightPage() {
     <h2>You got it right!</h2>
     <span style='font-size:70px;'>&#128512;</span>
     <div class="paragraph">
-      <p>You have ${store.score} answers right out of 6.</p>
-      <p>Question ${store.questionNumber} out of 6</p>
+      <p>You have ${store.score} answers right out of ${questions.length}.</p>
+      <p>Question ${store.questionNumber} out of ${questions.length}.</p>
     </div>
     <button class="next">
       <span>Next</span>
@@ -157,8 +157,8 @@ function wrongPage(question) {
     <span style='font-size:70px;'>&#128528;</span>
     <div class="paragraph">
       <p>The right answer is "${question[store.questionNumber - 1].correctAnswer}"</p>
-      <p>You have ${store.score} answers right out of 6</p>
-      <p>Question ${store.questionNumber} out of 6</p>
+      <p>You have ${store.score} answers right out of ${questions.length}</p>
+      <p>Question ${store.questionNumber} out of ${questions.length}</p>
     </div>
     <button class="next">
       <span>Next</span>
@@ -171,7 +171,8 @@ function finishPage() {
   <section class="container finish-page">
     <h2>You finished!</h2>
     <span style='font-size:70px;'>&#128079;</span>
-    <p>You got ${store.score} answers right out of 6.</p>
+      <p>You got <strong>${store.score}</strong> answers right out of <strong>${questions.length}</strong>.</p>
+      <p>${store.score < (questions.length / 2) + 2 ? 'Try a little harder next time...' : 'Good job! You seem to know your stuff.'}<p>
     <button class="reset">
       <span>Restart Quiz</span>
     </button>
@@ -180,9 +181,9 @@ function finishPage() {
 
 /********** RENDER FUNCTION(S) **********/
 
-function renderWelcome() {
-  return welcomePage();
-}
+// function renderWelcome() {
+//   return welcomePage();
+// }
 
 function renderQuestion(data) {
   return questionPage(data);
@@ -221,7 +222,9 @@ function handleNextQuestion() {
     event.preventDefault();
     let answer = $("input[name='city']:checked").val()
     let correct = questions[store.questionNumber].correctAnswer;
-    if (answer == correct) {
+    if (!answer) {
+      alert('You need to pick and answer!')
+    } else if (answer == correct) {
       store.score += 1;
       store.questionNumber += 1;
       $('main').html(renderRight())
