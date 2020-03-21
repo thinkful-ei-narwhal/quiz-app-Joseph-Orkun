@@ -120,6 +120,7 @@ function questionPage(question) {
     <img src="${question[store.questionNumber].img}" alt="${question[store.questionNumber].alt}">
     <form class="answer-question" action="#">
         <p>What is the capital of ${question[store.questionNumber].alt}?</p>
+        <legend>Pick a city capital</legend>
         <input type="radio" id="q1" name="city" value="${value[0]}">
         <label for="q1">${question[store.questionNumber].answers[0]}</label><br>
         <input type="radio" id="q2" name="city" value="${value[1]}">
