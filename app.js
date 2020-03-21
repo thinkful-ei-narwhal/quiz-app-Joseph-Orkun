@@ -74,6 +74,54 @@ const questions = [
     correctAnswer: 'Ottawa',
     img: 'https://www.worldtravelguide.net/wp-content/uploads/2017/03/shu-Canada-Toronto_1388944829-1440x823.jpg',
     alt: 'Canada'
+  },
+  {
+    question: 'What is the capital of the Bahamas?',
+    answers: [
+      'Freeport',
+      'Nassau',
+      'West End',
+      'Alice Town'
+    ],
+    correctAnswer: 'Nassau',
+    img: 'https://www.worldatlas.com/r/w1200-h701-c1200x701/upload/dd/6c/49/bahamas-islands.jpg',
+    alt: 'the Bahamas'
+  },
+  {
+    question: 'What is the capital of Finland?',
+    answers: [
+      'Helsinki',
+      'Jyväskylä',
+      'Oulu',
+      'Ventaa'
+    ],
+    correctAnswer: 'Helsinki',
+    img: 'https://www.worldtravelguide.net/wp-content/uploads/2017/04/Think-Finland-Lapland-185122878-sara_winter-copy.jpg',
+    alt: 'Finland'
+  },
+  {
+    question: 'What is the capital of Haiti?',
+    answers: [
+      'Cap-Haïtien',
+      'Pétionville',
+      'Jacmel',
+      'Port-au-Prince'
+    ],
+    correctAnswer: 'Port-au-Prince',
+    img: 'https://miro.medium.com/max/4000/0*i072wVa5v_ZdmrrL.jpg',
+    alt: 'Haiti'
+  },
+  {
+    question: 'What is the capital of Algeria?',
+    answers: [
+      'Oran',
+      'Algiers',
+      'Annaba',
+      'Setif'
+    ],
+    correctAnswer: 'Algiers',
+    img: 'https://www.usip.org/sites/default/files/styles/image_with_caption/public/2019-05/20190529-pexels-abdelfatah_cezayirli-ac.jpg?itok=h4ce2-Jh',
+    alt: 'Algeria'
   }
 ]
 
@@ -119,7 +167,7 @@ function questionPage(question) {
     <p>Question ${store.questionNumber + 1}</p>
     <img src="${question[store.questionNumber].img}" alt="${question[store.questionNumber].alt}">
     <form class="answer-question" action="#">
-        <p>What is the capital of ${question[store.questionNumber].alt}?</p>
+        <p>${question[store.questionNumber].question}</p>
         <legend>Pick a city capital</legend>
         <input type="radio" id="q1" name="city" value="${value[0]}">
         <label for="q1">${question[store.questionNumber].answers[0]}</label><br>
@@ -140,14 +188,15 @@ function rightPage() {
   return `
   <section class="container right-page">
     <h2>You got it right!</h2>
-    <span style='font-size:70px;'>&#128512;</span>
+    <span class="response-emoji">&#128512;</span>
     <div class="paragraph">
-      <p>You have ${store.score} answers right out of ${questions.length}.</p>
-      <p>Question ${store.questionNumber} out of ${questions.length}.</p>
+      <p>You have <strong>${store.score}</strong> answers correct out of <strong>${questions.length}</strong>.</p>
+      <h3>Keep it up!</h3>
     </div>
     <button class="next">
       <span>Next</span>
     </button>
+    <p>Question ${store.questionNumber} out of ${questions.length}</p>
   </section>`
 }
 
@@ -155,15 +204,15 @@ function wrongPage(question) {
   return `
   <section class="container wrong-page">
     <h2>Oops! You got that wrong.</h2>
-    <span style='font-size:70px;'>&#128528;</span>
+    <span class="response-emoji">&#128528;</span>
     <div class="paragraph">
-      <p>The right answer is "${question[store.questionNumber - 1].correctAnswer}"</p>
-      <p>You have ${store.score} answers right out of ${questions.length}</p>
-      <p>Question ${store.questionNumber} out of ${questions.length}</p>
+      <h4>The right answer is <em>"${question[store.questionNumber - 1].correctAnswer}"</em></h4>
+      <p>You have <strong>${store.score}</strong> answers correct out of <strong>${questions.length}</strong></p>
     </div>
     <button class="next">
       <span>Next</span>
     </button>
+    <p>Question ${store.questionNumber} out of ${questions.length}</p>
   </section>`
 }
 
@@ -172,7 +221,7 @@ function finishPage() {
   <section class="container finish-page">
     <h2>You finished!</h2>
     <span style='font-size:100px;' class="clap-emoji">&#128079;</span>
-      <p>You got <strong>${store.score}</strong> answers right out of <strong>${questions.length}</strong>.</p>
+      <p>You got <strong>${store.score}</strong> answers correct out of <strong>${questions.length}</strong>.</p>
       <p>${store.score < (questions.length / 2) + 2 ? 'Try a little harder next time...' : 'Good job! You seem to know your stuff.'}<p>
     <button class="reset">
       <span>Restart Quiz</span>

@@ -54,6 +54,8 @@ button {
 
 .welcome-screen h1 {
   margin-top: 20px;
+  font-family: 'Playfair Display';
+  font-size: 40px;
 }
 
 .welcome-screen .play-now {
@@ -83,6 +85,7 @@ form legend {
 
 .question-form p {
   font-weight: bold;
+  font-family: 'Playfair Display';
 }
 
 form input {
@@ -105,7 +108,7 @@ label {
   background-color: #ddd;
   padding: 10px 20px;
   margin: 0 0 10px;
-  border-radius: 4px;
+  border-radius: 20px;
 }
 
 .answer-question input[type="radio"]:checked + label {
@@ -128,12 +131,17 @@ label {
 .right-page h2,
 .finish-page h2 {
   font-size: 34px;
+  font-family: 'Playfair Display';
 }
 
 .wrong-page > div.paragraph,
 .right-page > div.paragraph,
 .finish-page > p {
   margin: 70px auto 50px;
+}
+
+.response-emoji {
+  font-size: 70px;
 }
 
 /* Tablet Compatibility */
@@ -160,6 +168,11 @@ label {
 
   .question-form p {
     font-size: 20px;
+  }
+
+  .response-emoji {
+    display: inline-block;
+    margin: 20px 0;
   }
   
   form input {
@@ -204,6 +217,11 @@ label {
 
   .welcome-screen h1 {
     margin-top: 60px;
+  }
+
+  .response-emoji {
+    margin: 40px 0;
+    font-size: 100px;
   }
 
   .finish-page .clap-emoji {
