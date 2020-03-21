@@ -70,12 +70,12 @@ button {
 
 /* Question Page */
 
-form button {
+.answer-question button {
   display: block;
   margin: 25px auto 0; 
 }
 
-form legend {
+.answer-question legend {
   display: none;
 }
 
@@ -88,13 +88,13 @@ form legend {
   font-family: 'Playfair Display';
 }
 
-form input {
+.answer-question input {
   display: inline-block;
   margin-top: 20px;
 }
 
 label {
-  margin: 10px 0 10px 0;
+  margin: 10px 0 15px 0;
 }
 
 .answer-question input[type="radio"] {
@@ -137,7 +137,7 @@ label {
 .wrong-page > div.paragraph,
 .right-page > div.paragraph,
 .finish-page > p {
-  margin: 70px auto 50px;
+  margin: 70px auto 30px;
 }
 
 .response-emoji {
@@ -175,7 +175,7 @@ label {
     margin: 20px 0;
   }
   
-  form input {
+  .answer-question input {
     display: inline-block;
     margin-top: 20px;
     font-size: 22px;
