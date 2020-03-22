@@ -217,12 +217,13 @@ function wrongPage(question) {
 }
 
 function finishPage() {
+  const gradeScale = store.score < (questions.length / 2) + 2;
   return `
   <section class="container finish-page">
     <h2>You finished!</h2>
-    <span style='font-size:100px;' class="clap-emoji">&#128079;</span>
+    <span style='font-size:100px;' class="final-emoji">${gradeScale ? '&#129300;' : '&#128079;'}</span>
       <p>You got <strong>${store.score}</strong> answers correct out of <strong>${questions.length}</strong>.</p>
-      <p style="margin: 0;">${store.score < (questions.length / 2) + 2 ? 'Try a little harder next time...' : 'Good job! You seem to know your stuff.'}<p>
+      <p style="margin: 0;">${gradeScale ? 'Try a little harder next time...' : 'Good job! You seem to know your stuff.'}<p>
     <button class="reset">
       <span>Restart Quiz</span>
     </button>
