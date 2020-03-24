@@ -4,10 +4,6 @@ import views from './views.js';
 
 /********** RENDER FUNCTION(S) **********/
 
-// function renderWelcome() {
-//   return welcomePage();
-// }
-
 function renderQuestion(data) {
   return views.questionPage(data);
 }
@@ -23,9 +19,6 @@ function renderWrong(data) {
 function renderFinish() {
   return views.finishPage();
 }
-
-
-// This function conditionally replaces the contents of the <main> tag based on the state of the store
 
 /********** EVENT HANDLER FUNCTIONS **********/
 
